@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="styles.css">
+    <script type="module" defer src="app.js"></script>
+    <script src="https://www.gstatic.com/charts/loader.js"></script>
+    <script>
+        google.charts.load('current', {packages: ['corechart']});
+    </script>
+    <title>Stock Market Chart</title>
+</head>
+<body>
+    <header>
+        <div class="main-title">Visualize the Stock Market</div>
+        <div class="display-buttons">
+            <button type="button" value="30min" id="30min-button" class="buttons">30 Min</button>
+            <button type="button" value="" id="daily-button" class="buttons">Daily</button>
+            <button type="button" value="" id="weekly-button" class="buttons">Weekly</button>
+            <button type="button" value="" id="monthly-button" class="buttons">Monthly</button>
+        </div>
+    </header>
+    <main class="main-div">
+        <div class="search-company">
+            <label for="search-field">Enter Company Name</label>
+            <input type="text" id="search-field" placeholder="Type here">
+            <button type="button" id="search-button">Search</button>
+        </div>
+        <div class="previous-search">Previous Search</div>
+        <div class="search-results"></div>
+        <div class="chart-container">
+            <div id="chart-div"></div>
+        </div>
+        
+    </main>
+    
+</body>
+</html>
