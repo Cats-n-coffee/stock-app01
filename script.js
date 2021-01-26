@@ -1,4 +1,4 @@
-const apiKey = 'W0UZ1STI8M3HO4U6';
+const apiKey = '';
 
 const thirtyMinButton = document.getElementById('30min-button');
 const dailyButton = document.getElementById('daily-button');
