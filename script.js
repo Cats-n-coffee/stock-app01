@@ -1,4 +1,4 @@
-const apiKey = '';
+const apiKey = 'W0UZ1STI8M3HO4U6';
 
 const thirtyMinButton = document.getElementById('30min-button');
 const dailyButton = document.getElementById('daily-button');
@@ -35,13 +35,16 @@ function displaySearchResults(data) {
         var resultName = result['2. name'];
         console.log(resultSymbol, resultName);
 
+        // Creates a line for each result
         var resultLine = document.createElement('div');
         resultLine.classList.add('result-line');
         resultLine.addEventListener('click', selectResult)
+        
         var symbolSpan = document.createElement('span');
         symbolSpan.classList.add('symbol-span');
         symbolSpan.innerText = resultSymbol;
         resultLine.appendChild(symbolSpan);
+        
         var nameParagraph = document.createElement('p');
         nameParagraph.innerText = resultName;
         resultLine.appendChild(nameParagraph);
@@ -51,6 +54,7 @@ function displaySearchResults(data) {
     
 }
 
+// Enables the ability to click a search result, stores it and searches the API for stock prices
 function selectResult(e) {
     if (e.target.className === 'symbol-span'){
         var selectedSymbol = e.target.innerText;
@@ -88,6 +92,7 @@ function getDataIntraday(companySymbol) {
         getNumbers(allNumbers, metaData)})
 }
 
+// Prepares an array for to make the chart with the queried data
 function getNumbers(data, metaData) {
     var allNumbers = data;
     var newArrayWithData = [];
@@ -187,6 +192,8 @@ function getDataMonthly() {
 
 previousSearch.addEventListener('click', showPreviousSearch)
 
+// Retrieves previous searches from local storage and displays them
+// Allows to click on an item to display its stock price on the chart
 function showPreviousSearch() {
     var storedArray = JSON.parse(localStorage.getItem('symbolArray'));
     console.log(storedArray)

@@ -3,8 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="styles.css">
-    <script type="module" defer src="app.js"></script>
+    <link rel="stylesheet" type="text/css" href="styles2.css">
+    <script src="https://kit.fontawesome.com/a517bc91f8.js" crossorigin="anonymous"></script>
+    <script defer src="script.js"></script>
     <script src="https://www.gstatic.com/charts/loader.js"></script>
     <script>
         google.charts.load('current', {packages: ['corechart']});
@@ -12,28 +13,43 @@
     <title>Stock Market Chart</title>
 </head>
 <body>
-    <header>
-        <div class="main-title">Visualize the Stock Market</div>
-        <div class="display-buttons">
-            <button type="button" value="30min" id="30min-button" class="buttons">30 Min</button>
-            <button type="button" value="" id="daily-button" class="buttons">Daily</button>
-            <button type="button" value="" id="weekly-button" class="buttons">Weekly</button>
-            <button type="button" value="" id="monthly-button" class="buttons">Monthly</button>
-        </div>
-    </header>
-    <main class="main-div">
-        <div class="search-company">
-            <label for="search-field">Enter Company Name</label>
-            <input type="text" id="search-field" placeholder="Type here">
-            <button type="button" id="search-button">Search</button>
-        </div>
-        <div class="previous-search">Previous Search</div>
-        <div class="search-results"></div>
-        <div class="chart-container">
-            <div id="chart-div"></div>
-        </div>
-        
-    </main>
-    
+    <div id="container">
+        <header>
+            <h1 class="main-title">Visualize the Stock Market</h1>
+            <form class="search-company">
+                <label for="search-field">
+                    <input type="text" id="search-field" placeholder="Enter Company Name">
+                </label>
+                <button type="button" id="search-button">Search</button>
+            </form>
+            <div class="prev-and-menu">
+                <div class="change-time">
+                    <span>Change Time</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="previous-search">Previous Search</div>
+            </div>
+            <div class="display-buttons">
+                <ul>
+                    <li><button type="button" id="30min-button" class="buttons">30 Min</button></li>
+                    <li><button type="button" id="daily-button" class="buttons">Daily</button></li>
+                    <li><button type="button" id="weekly-button" class="buttons">Weekly</button></li>
+                    <li><button type="button" id="monthly-button" class="buttons">Monthly</button></li>
+                </ul>
+            </div>
+            
+        </header>
+        <main class="main-div">
+            <div class="search-results"></div>
+            <div class="chart-container">
+                <div id="chart-div"></div>
+            </div>
+        </main>
+        <footer>
+            Stock prices from <a href="https://www.alphavantage.co/" target="_blank">Alpha Vantage API</a>.<br/> 
+            Charts using <a href="https://developers.google.com/chart" target="_blank">Google Charts</a>.<br/>
+            Coded by <a href="https://github.com/Cats-n-coffee/stock-app01" target="_blank"><i class="fab fa-github"></i>Cats-n-coffee</a>
+        </footer>
+    </div>
 </body>
 </html>

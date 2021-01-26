@@ -1,0 +1,198 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap');
+
+:root {
+    --font-stack: 'Lato', sans-serif;
+
+    --dark-blue: #032d6b;
+    --dark-grey: #292929;
+    --dark-orange: rgb(252, 59, 0);
+    --orange: rgb(255, 81, 0);
+    --medium-blue: #274c82;
+    --medium-gray: #9c9c9c;
+    --light-orange: rgb(253, 156, 110);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    font-size: 16px;
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--font-stack);
+    max-width: 1500px;
+    position: fixed;
+    /* overflow-x: hidden; */
+    /* height: 100vh; */
+    
+}
+
+li {
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+    color: red;
+}
+
+#container {
+    height: 100%;
+    overflow-x: hidden;
+    /* position: relative; */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+header {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5em;
+    padding: 2em 1em;
+    background: rgb(226, 225, 225);
+    position: relative;
+}
+
+header h1 {
+    font-size: 1.8em;
+    text-align: center;
+    color: var(--dark-orange);
+    padding-bottom: 1em;
+}
+
+header form {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    
+}
+
+header form input {
+    padding: .7em .5em;
+    border-radius: 35px;
+    border: none;
+    font-family: var(--font-stack);
+    color: var(--dark-grey);
+}
+
+header form input:focus {
+    outline: none;
+    box-shadow: 0 2px 1px 1px var(--orange);
+}
+
+header form button {
+    padding: .7em 1.4em;
+    border-radius: 35px;
+    background: rgb(255, 81, 0);
+    color: white;
+    border: none;
+    font-family: var(--font-stack);
+    letter-spacing: .1em;
+    text-transform: uppercase;
+}
+
+header form button:focus {
+    background: var(--light-orange);
+    color: black;
+    outline: none;
+}
+
+header .prev-and-menu {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+header .prev-and-menu .change-time span {
+    padding-right: 1em;
+}
+
+.change-time i:focus {
+    color: var(--dark-orange);
+}
+
+.change-time i:hover {
+    color: var(--dark-orange);
+}
+
+header .prev-and-menu .change-time i {
+    color: var(--dark-grey);
+}
+
+header .prev-and-menu .previous-search:focus, .previous-search:hover {
+    color: var(--dark-orange);
+}
+
+header .display-buttons {
+    display: none;
+    width: 100%;
+    height: auto;
+    background: var(--medium-gray);
+    position: absolute;
+    top: 100%;
+    left: 0;
+}
+
+header .display-buttons ul {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: .5em;
+    padding: 1em;
+}
+
+header .display-buttons ul li button {
+    padding: .7em 2em;
+    border: none;
+    border-radius: 35px;
+    font-family: var(--font-stack);
+    background-color: var(--orange);
+    color: white;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    z-index: 3;
+}
+
+header .display-buttons ul li button:focus {
+    background: var(--light-orange);
+    color: black;
+    outline: none;
+}
+
+main {
+    flex-grow: 1;
+}
+
+.chart-container {
+    /* overflow-y: hidden; */
+    overflow-x: scroll;
+    white-space: nowrap;
+    margin-top: 15px;
+    margin-left: 30px;
+    flex-grow: 1;
+    height: 100%;
+    width: 100%;
+}
+
+#chart-div {
+    display: inline-block;
+}
+
+footer {
+    font-size: .7em;
+}
+
+/* header, main, footer {
+    flex-shrink: 0;
+} */
