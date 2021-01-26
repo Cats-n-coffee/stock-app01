@@ -1,4 +1,4 @@
-const apiKey = '';
+const apiKey = 'W0UZ1STI8M3HO4U6';
 
 const thirtyMinButton = document.getElementById('30min-button');
 const dailyButton = document.getElementById('daily-button');
@@ -9,9 +9,23 @@ const searchButton = document.getElementById('search-button');
 const searchResults = document.getElementsByClassName('search-results')[0];
 const previousSearch = document.getElementsByClassName('previous-search')[0];
 const mainDiv = document.getElementsByClassName('main-div')[0];
+const showTimesBtn = document.getElementById('all-times');
+
+searchResults.style.display = 'none';
+
+showTimesBtn.addEventListener('click', showTimes);
+
+function showTimes() {
+    const displayBtns = document.getElementsByClassName('display-buttons')[0];
+    const showTimesArrow = document.getElementsByClassName('fa-chevron-down')[0];
+
+    displayBtns.classList.toggle('show');
+    showTimesArrow.classList.toggle('turn-arrow');
+}
 
 searchButton.addEventListener('click', autoCompleteSearch)
 
+// Uses search API for results display
 function autoCompleteSearch() {
     if (searchResults.hasChildNodes()) {
         clearDisplay()
@@ -24,6 +38,7 @@ function autoCompleteSearch() {
     inputSearch.value = '';
 }
 
+// Displays the results
 function displaySearchResults(data) {
     if (searchResults.style.display === 'none') {
         searchResults.style.display = 'block';
@@ -82,6 +97,7 @@ function storeinLocalArray(selectedSymbol) {
     localStorage.setItem('symbolArray', JSON.stringify(symbolArray));
 }
 
+// Queries Intraday API, for stock price every 30 minutes
 function getDataIntraday(companySymbol) {
     fetch(`https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol=${companySymbol}&interval=30min&apikey=${apiKey}`)
     .then(res => res.json())
@@ -92,7 +108,7 @@ function getDataIntraday(companySymbol) {
         getNumbers(allNumbers, metaData)})
 }
 
-// Prepares an array for to make the chart with the queried data
+// Prepares an array to make the chart with the queried data
 function getNumbers(data, metaData) {
     var allNumbers = data;
     var newArrayWithData = [];
@@ -116,6 +132,7 @@ function getNumbers(data, metaData) {
 
 google.charts.setOnLoadCallback(drawChart);
 
+// Draws the Google candlesticks chart
 async function drawChart(newArrayWithData, metaData) {
     var data = await new google.visualization.DataTable();
         data.addColumn('string', 'times');
@@ -143,6 +160,7 @@ async function drawChart(newArrayWithData, metaData) {
 
 thirtyMinButton.addEventListener('click', thirtyMinFunction)
 
+// Displays the intraday for the item searched
 function thirtyMinFunction() {
     var companySymbol = localStorage.getItem('Symbol');
     getDataIntraday(companySymbol);
@@ -150,6 +168,7 @@ function thirtyMinFunction() {
 
 dailyButton.addEventListener('click', getDataDaily)
 
+// Displays daily stock prices for the same item
 function getDataDaily() {
     var companySymbol = localStorage.getItem('Symbol');
     fetch(`https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=${companySymbol}&apikey=${apiKey}`)
@@ -164,6 +183,7 @@ function getDataDaily() {
 
 weeklyButton.addEventListener('click', getDataWeekly);
 
+// Displays weekly stock prices for the same item
 function getDataWeekly() {
     var companySymbol = localStorage.getItem('Symbol');
     fetch(`https://www.alphavantage.co/query?function=TIME_SERIES_WEEKLY&symbol=${companySymbol}&apikey=${apiKey}`)
@@ -178,6 +198,7 @@ function getDataWeekly() {
 
 monthlyButton.addEventListener('click', getDataMonthly);
 
+// Displays monthly stock price for the same item
 function getDataMonthly() {
     var companySymbol = localStorage.getItem('Symbol');
     fetch(`https://www.alphavantage.co/query?function=TIME_SERIES_MONTHLY&symbol=${companySymbol}&apikey=${apiKey}`)
@@ -198,14 +219,15 @@ function showPreviousSearch() {
     var storedArray = JSON.parse(localStorage.getItem('symbolArray'));
     console.log(storedArray)
     var popupWrapper = document.createElement('div');
-    popupWrapper.classList.add('popup-wrapper');
+    popupWrapper.classList.add('popup-wrapper-previous-search');
     popupWrapper.addEventListener('click', () => {
         popupWrapper.style.display = 'none';
     })
     var popup = document.createElement('div');
-    popup.classList.add('popup');
+    popup.classList.add('popup-previous-search');
+    
     var popupTitle = document.createElement('h3');
-    popupTitle.innerText = 'Your Previous Search';
+    popupTitle.innerText = 'Previous Search';
     popup.appendChild(popupTitle);
     
     for (let i = 0; i < storedArray.length; i++) {
@@ -224,7 +246,7 @@ function showPreviousSearch() {
     mainDiv.appendChild(popupWrapper);
 }
 
-
+// Removes search results from the div for the next search
 function clearDisplay() {
     while (searchResults.firstChild) {
         searchResults.removeChild(searchResults.firstChild)
